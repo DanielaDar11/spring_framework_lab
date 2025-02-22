@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="concediuBean" class="com.example.spring_framework_lab.Concediu">
+        <constructor-arg value="1"/>
+        <property name="tipConcediu" value="Medical"/>
+        <property name="zile" value="13"/>
+        <property name="dataIncepere" value="2025-02-10"/>
+        <property name="dataSfarsit" value="2025-03-24"/>
+    </bean>
+
+    <bean id="evaluarePerformantaBean" class="com.example.spring_framework_lab.EvaluarePerformanta">
+        <constructor-arg value="1"/>
+        <property name="dataEvaluare" value="2025-03-20"/>
+        <property name="scor" value="7.2f"/>
+        <property name="comentarii" value="Performanta este excelenta"/>
+    </bean>
+
+    <bean id="angajat" class="com.example.spring_framework_lab.Angajat">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Catalina"/>
+        <constructor-arg value="Cernei"/>
+        <constructor-arg value="23"/>
+        <constructor-arg value="10000.0"/>
+        <constructor-arg value="true"/>
+        <constructor-arg ref="concediuBean"/>
+        <constructor-arg ref="evaluarePerformantaBean"/>
+    </bean>
+
+</beans>

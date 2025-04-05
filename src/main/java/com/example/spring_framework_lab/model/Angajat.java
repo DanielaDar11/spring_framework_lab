@@ -1,7 +1,11 @@
 package com.example.spring_framework_lab.model;
-import jakarta.persistence.*;
-import lombok.*;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Data
@@ -9,31 +13,31 @@ import lombok.*;
 @Entity
 @Table(name = "angajati")
 public class Angajat {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generare automata a ID-ului de catre baza de date
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
 
-    @Column(name = "nume", nullable = false)
-    private String nume;
+    @Column(nullable = false)
+    public String nume;
 
-    @Column(name = "prenume", nullable = false)
-    private String prenume;
+    @Column(nullable = false)
+    public String prenume;
 
-    @Column(name = "varsta", nullable = false)
-    private int varsta;
+    @Column(nullable = false)
+    public int varsta;
 
-    @Column(name = "salariu", nullable = false)
-    private double salariu;
+    @Column(nullable = false)
+    public double salariu;
 
     @Column(name = "status_angajat", nullable = false)
-    private Boolean statusAngajat;
+    public Boolean statusAngajat;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "angajat_id") 
+   public List<Concediu> concedii;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "concediu_id") // Coloana care face legatura cu tabelul Concediu
-    private Concediu concediu;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "evaluare_performanta_id") // Coloana care face legatura cu tabelul EvaluarePerformanta
-    private EvaluarePerformanta evaluarePerformanta;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "angajat_id") 
+    public List<EvaluarePerformanta> evaluariPerformanta;
 }
